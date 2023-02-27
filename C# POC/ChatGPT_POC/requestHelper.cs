@@ -24,7 +24,7 @@ namespace ChatGPT_POC
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, url);
 
             // requestMessage.Headers.Add(@"Content-Type", @"application/json");
-            requestMessage.Headers.Add("Authorization", "Bearer [ API KEY ]");
+            requestMessage.Headers.Add("Authorization", "Bearer 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");
 
             var gptModel = new PostGPTModel()
             {
@@ -39,11 +39,11 @@ namespace ChatGPT_POC
 
 
             var response = client.SendAsync(requestMessage).Result;
-            var result = await response.Content.ReadAsStringAsync();
+            var result = response.Content.ReadAsStringAsync().Result;
 
             var parseObject = JsonConvert.DeserializeObject<GPTModelResponse>(result);
 
-            return string.Join("", JsonConvert.DeserializeObject<GPTModelResponse>(result).choices.Select(r => r.text).ToList());
+            return string.Join("", parseObject.choices.Select(r => r.text).ToList().First());
         }
     }
 }
