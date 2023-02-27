@@ -9,7 +9,14 @@ namespace ChatGPT_POC
 
         private void BtnAsk_Click(object sender, EventArgs e)
         {
-            txtResponse.Text = requestHelper.RequestChatGPT(txtQuestion.Text).Result;
+            try
+            {
+                txtResponse.Text = requestHelper.RequestChatGPT(txtQuestion.Text).Result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

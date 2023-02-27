@@ -19,31 +19,41 @@ namespace ChatGPT_POC
 
         public static async Task<string> RequestChatGPT(string question)
         {
-            var url = @"https://api.openai.com/v1/completions";
-
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, url);
-
-            // requestMessage.Headers.Add(@"Content-Type", @"application/json");
-            requestMessage.Headers.Add("Authorization", "Bearer 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");
-
-            var gptModel = new PostGPTModel()
+            try
             {
-                model = "text-davinci-003",
-                prompt = question,
-                max_tokens = 4000,
-                temperature = 1.0M
-            };
+                var url = @"https://api.openai.com/v1/completions";
 
-            // requestMessage.Content = new StringContent("{\r\n  \"model\": \"text-davinci-003\",\r\n  \"prompt\": \"What is your name?\",\r\n  \"max_tokens\": 4000,\r\n  \"temperature\": 1.0\r\n}", Encoding.UTF8, "application/json");
-            requestMessage.Content = new StringContent(JsonConvert.SerializeObject(gptModel), Encoding.UTF8, "application/json");
+                var requestMessage = new HttpRequestMessage(HttpMethod.Post, url);
+
+                // requestMessage.Headers.Add(@"Content-Type", @"application/json");
+                requestMessage.Headers.Add("Authorization", "[API KEY]");
+
+                var gptModel = new PostGPTModel()
+                {
+                    model = "text-davinci-003",
+                    prompt = question,
+                    max_tokens = 4000,
+                    temperature = 1.0M
+                };
+
+                // requestMessage.Content = new StringContent("{\r\n  \"model\": \"text-davinci-003\",\r\n  \"prompt\": \"What is your name?\",\r\n  \"max_tokens\": 4000,\r\n  \"temperature\": 1.0\r\n}", Encoding.UTF8, "application/json");
+                requestMessage.Content = new StringContent(JsonConvert.SerializeObject(gptModel), Encoding.UTF8, "application/json");
 
 
-            var response = client.SendAsync(requestMessage).Result;
-            var result = response.Content.ReadAsStringAsync().Result;
+                var response = client.SendAsync(requestMessage).Result;
+                var result = response.Content.ReadAsStringAsync().Result;
 
-            var parseObject = JsonConvert.DeserializeObject<GPTModelResponse>(result);
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                    throw new Exception(result);
 
-            return string.Join("", parseObject.choices.Select(r => r.text).ToList().First());
+                var parseObject = JsonConvert.DeserializeObject<GPTModelResponse>(result);
+
+                return string.Join("", parseObject.choices.Select(r => r.text).ToList().First());
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

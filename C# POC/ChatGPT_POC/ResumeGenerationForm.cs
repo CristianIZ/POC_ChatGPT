@@ -72,23 +72,30 @@ namespace ChatGPT_POC
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            string question = string.Empty;
+            try
+            {
+                string question = string.Empty;
 
-            if (cmbSection.Text == "Description")
-            {
-                question = GPTQuestions.DescriptionSection(cmbSection.Text, cmbSeniority.Text, cmbTechnology.Text, cmbSecondTechnology.Text, new DateTime((int)numYear.Value, (int)numMonth.Value, 1), MapList());
-            }
-            else if (cmbSection.Text == "Technical Skills")
-            {
-                question = GPTQuestions.TechnicalSkills(cmbTechnology.Text, cmbSecondTechnology.Text);
-            }
-            else
-            {
-                return;
-            }
+                if (cmbSection.Text == "Description")
+                {
+                    question = GPTQuestions.DescriptionSection(cmbSection.Text, cmbSeniority.Text, cmbTechnology.Text, cmbSecondTechnology.Text, new DateTime((int)numYear.Value, (int)numMonth.Value, 1), MapList());
+                }
+                else if (cmbSection.Text == "Technical Skills")
+                {
+                    question = GPTQuestions.TechnicalSkills(cmbTechnology.Text, cmbSecondTechnology.Text);
+                }
+                else
+                {
+                    return;
+                }
 
-            txtQuestion.Text = question;
-            txtResponse.Text = requestHelper.RequestChatGPT(question).Result;
+                txtQuestion.Text = question;
+                txtResponse.Text = requestHelper.RequestChatGPT(question).Result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private List<string> MapList()

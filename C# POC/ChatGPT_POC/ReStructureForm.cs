@@ -26,10 +26,17 @@ namespace ChatGPT_POC
 
         private async void btnGenerate_Click(object sender, EventArgs e)
         {
-            if (chkHighlight.Checked)
-                txtResponse.Text = await requestHelper.RequestChatGPT(GPTQuestions.ReStructureAndBold(txtText.Text, cmbNewPosition.Text));
-            else
-                txtResponse.Text = await requestHelper.RequestChatGPT(GPTQuestions.ReStructure(txtText.Text, cmbNewPosition.Text));
+            try
+            {
+                if (chkHighlight.Checked)
+                    txtResponse.Text = await requestHelper.RequestChatGPT(GPTQuestions.ReStructureAndBold(txtText.Text, cmbNewPosition.Text));
+                else
+                    txtResponse.Text = await requestHelper.RequestChatGPT(GPTQuestions.ReStructure(txtText.Text, cmbNewPosition.Text));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
