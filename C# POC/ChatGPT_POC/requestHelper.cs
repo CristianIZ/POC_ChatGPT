@@ -26,7 +26,7 @@ namespace ChatGPT_POC
                 var requestMessage = new HttpRequestMessage(HttpMethod.Post, url);
 
                 // requestMessage.Headers.Add(@"Content-Type", @"application/json");
-                requestMessage.Headers.Add("Authorization", "[API KEY]");
+                requestMessage.Headers.Add("Authorization", "Bearer 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");
 
                 var gptModel = new PostGPTModel()
                 {

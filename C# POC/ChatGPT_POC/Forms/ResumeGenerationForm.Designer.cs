@@ -52,8 +52,16 @@
             numMonth = new NumericUpDown();
             label10 = new Label();
             label11 = new Label();
+            label12 = new Label();
+            numStartTechYear = new NumericUpDown();
+            chkHighlight = new CheckBox();
+            label13 = new Label();
+            label14 = new Label();
+            numStartTechMonth = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)numYear).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numMonth).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numStartTechYear).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numStartTechMonth).BeginInit();
             SuspendLayout();
             // 
             // label4
@@ -87,7 +95,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(569, 138);
+            label5.Location = new Point(573, 143);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(108, 21);
@@ -178,7 +186,7 @@
             lstTechnologies.ItemHeight = 21;
             lstTechnologies.Location = new Point(321, 40);
             lstTechnologies.Name = "lstTechnologies";
-            lstTechnologies.Size = new Size(241, 193);
+            lstTechnologies.Size = new Size(241, 130);
             lstTechnologies.TabIndex = 22;
             // 
             // label3
@@ -248,14 +256,14 @@
             // 
             // numYear
             // 
-            numYear.Location = new Point(615, 167);
+            numYear.Location = new Point(786, 141);
             numYear.Name = "numYear";
             numYear.Size = new Size(120, 29);
             numYear.TabIndex = 30;
             // 
             // numMonth
             // 
-            numMonth.Location = new Point(803, 167);
+            numMonth.Location = new Point(974, 141);
             numMonth.Name = "numMonth";
             numMonth.Size = new Size(120, 29);
             numMonth.TabIndex = 31;
@@ -263,7 +271,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(569, 169);
+            label10.Location = new Point(740, 143);
             label10.Name = "label10";
             label10.Size = new Size(40, 21);
             label10.TabIndex = 32;
@@ -272,17 +280,74 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(741, 169);
+            label11.Location = new Point(912, 143);
             label11.Name = "label11";
             label11.Size = new Size(56, 21);
             label11.TabIndex = 33;
             label11.Text = "Month";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(321, 180);
+            label12.Name = "label12";
+            label12.Size = new Size(110, 21);
+            label12.TabIndex = 34;
+            label12.Text = "Working Since";
+            // 
+            // numStartTechYear
+            // 
+            numStartTechYear.Location = new Point(363, 204);
+            numStartTechYear.Name = "numStartTechYear";
+            numStartTechYear.Size = new Size(68, 29);
+            numStartTechYear.TabIndex = 35;
+            // 
+            // chkHighlight
+            // 
+            chkHighlight.AutoSize = true;
+            chkHighlight.Location = new Point(573, 179);
+            chkHighlight.Name = "chkHighlight";
+            chkHighlight.Size = new Size(140, 25);
+            chkHighlight.TabIndex = 36;
+            chkHighlight.Text = "Highlight words";
+            chkHighlight.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(321, 206);
+            label13.Name = "label13";
+            label13.Size = new Size(40, 21);
+            label13.TabIndex = 37;
+            label13.Text = "Year";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(437, 206);
+            label14.Name = "label14";
+            label14.Size = new Size(56, 21);
+            label14.TabIndex = 38;
+            label14.Text = "Month";
+            // 
+            // numStartTechMonth
+            // 
+            numStartTechMonth.Location = new Point(499, 204);
+            numStartTechMonth.Name = "numStartTechMonth";
+            numStartTechMonth.Size = new Size(59, 29);
+            numStartTechMonth.TabIndex = 39;
             // 
             // ResumeGenerationForm
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1106, 588);
+            Controls.Add(numStartTechMonth);
+            Controls.Add(label14);
+            Controls.Add(label13);
+            Controls.Add(chkHighlight);
+            Controls.Add(numStartTechYear);
+            Controls.Add(label12);
             Controls.Add(label11);
             Controls.Add(label10);
             Controls.Add(numMonth);
@@ -314,6 +379,8 @@
             Load += ResumeGeneration_Load;
             ((System.ComponentModel.ISupportInitialize)numYear).EndInit();
             ((System.ComponentModel.ISupportInitialize)numMonth).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numStartTechYear).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numStartTechMonth).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -343,5 +410,11 @@
         private NumericUpDown numMonth;
         private Label label10;
         private Label label11;
+        private Label label12;
+        private NumericUpDown numStartTechYear;
+        private CheckBox chkHighlight;
+        private Label label13;
+        private Label label14;
+        private NumericUpDown numStartTechMonth;
     }
 }

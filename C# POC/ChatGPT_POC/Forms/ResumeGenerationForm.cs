@@ -1,9 +1,11 @@
-﻿using System;
+﻿using ChatGPT_POC.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -37,10 +39,21 @@ namespace ChatGPT_POC
             cmbSecondTechnology.SelectedIndex = 0;
 
             numYear.Maximum = 3000;
-            numYear.Minimum = 0;
+            numYear.Minimum = 2000;
+
+            numMonth.Maximum = 12;
+            numMonth.Minimum = 0;
+
+            numStartTechYear.Maximum = 3000;
+            numStartTechYear.Minimum = 2000;
+
+            numStartTechMonth.Maximum = 12;
+            numStartTechMonth.Minimum = 0;
 
             numYear.Value = DateTime.Today.Year - 5;
             numMonth.Value = DateTime.Today.Month;
+            numStartTechYear.Value = DateTime.Today.Year - 5;
+            numStartTechMonth.Value = DateTime.Today.Month;
 
             lstTechnologies.Items.Add("EntityFramework");
             lstTechnologies.Items.Add("Typescript");
@@ -57,7 +70,13 @@ namespace ChatGPT_POC
             if (lstTechnologies.SelectedItems == null || lstTechnologies.SelectedItems.Count == 0)
                 return;
 
-            lstTechLearned.Items.Add((string)(lstTechnologies.SelectedItems[0]));
+            var tech = new TechnologyExperienceModel()
+            {
+                Name = (string)(lstTechnologies.SelectedItems[0]),
+                StartDate = new DateTime((int)numStartTechYear.Value, (int)numStartTechMonth.Value, 1)
+            };
+
+            lstTechLearned.Items.Add(tech);
             lstTechnologies.Items.RemoveAt(lstTechnologies.SelectedIndices[0]);
         }
 
@@ -66,7 +85,7 @@ namespace ChatGPT_POC
             if (lstTechLearned.SelectedItems == null || lstTechLearned.SelectedItems.Count == 0)
                 return;
 
-            lstTechnologies.Items.Add((string)(lstTechLearned.SelectedItems[0]));
+            lstTechnologies.Items.Add(((TechnologyExperienceModel)lstTechLearned.SelectedItems[0]).Name);
             lstTechLearned.Items.RemoveAt(lstTechLearned.SelectedIndices[0]);
         }
 
@@ -78,7 +97,7 @@ namespace ChatGPT_POC
 
                 if (cmbSection.Text == "Description")
                 {
-                    question = GPTQuestions.DescriptionSection(cmbSection.Text, cmbSeniority.Text, cmbTechnology.Text, cmbSecondTechnology.Text, new DateTime((int)numYear.Value, (int)numMonth.Value, 1), MapList());
+                    question = GPTQuestions.DescriptionSection(cmbSection.Text, cmbSeniority.Text, cmbTechnology.Text, cmbSecondTechnology.Text, new DateTime((int)numYear.Value, (int)numMonth.Value, 1), MapList(), chkHighlight.Checked);
                 }
                 else if (cmbSection.Text == "Technical Skills")
                 {
@@ -98,13 +117,13 @@ namespace ChatGPT_POC
             }
         }
 
-        private List<string> MapList()
+        private List<TechnologyExperienceModel> MapList()
         {
-            var result = new List<string>();
+            var result = new List<TechnologyExperienceModel>();
 
             foreach (var item in lstTechLearned.Items)
             {
-                result.Add((string)item);
+                result.Add((TechnologyExperienceModel)item);
             }
 
             return result;

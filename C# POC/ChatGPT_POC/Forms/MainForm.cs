@@ -34,5 +34,11 @@ namespace ChatGPT_POC
             var form = new ReStructureForm();
             form.ShowDialog();
         }
+
+        private void btnCompanyDescription_Click(object sender, EventArgs e)
+        {
+            var form = new CompanyDescriptionForm();
+            form.ShowDialog();
+        }
     }
 }

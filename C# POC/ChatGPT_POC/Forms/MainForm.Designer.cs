@@ -31,6 +31,7 @@
             btnAskTo = new Button();
             btnCvGeneration = new Button();
             btnReStructure = new Button();
+            btnCompanyDescription = new Button();
             SuspendLayout();
             // 
             // btnAskTo
@@ -63,11 +64,22 @@
             btnReStructure.UseVisualStyleBackColor = true;
             btnReStructure.Click += btnReStructure_Click;
             // 
+            // btnCompanyDescription
+            // 
+            btnCompanyDescription.Location = new Point(399, 12);
+            btnCompanyDescription.Name = "btnCompanyDescription";
+            btnCompanyDescription.Size = new Size(123, 71);
+            btnCompanyDescription.TabIndex = 3;
+            btnCompanyDescription.Text = "Company Description";
+            btnCompanyDescription.UseVisualStyleBackColor = true;
+            btnCompanyDescription.Click += btnCompanyDescription_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(412, 100);
+            ClientSize = new Size(535, 95);
+            Controls.Add(btnCompanyDescription);
             Controls.Add(btnReStructure);
             Controls.Add(btnCvGeneration);
             Controls.Add(btnAskTo);
@@ -81,5 +93,6 @@
         private Button btnAskTo;
         private Button btnCvGeneration;
         private Button btnReStructure;
+        private Button btnCompanyDescription;
     }
 }
