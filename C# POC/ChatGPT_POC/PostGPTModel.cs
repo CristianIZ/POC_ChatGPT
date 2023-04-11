@@ -9,8 +9,12 @@ namespace ChatGPT_POC
     public class PostGPTModel
     {
         public string model { get; set; }
-        public string prompt { get; set; }
-        public int max_tokens { get; set; }
-        public decimal temperature { get; set; }
+        public List<PostGPTMessages> messages { get; set; }
+    }
+
+    public class PostGPTMessages
+    {
+        public string role { get; set; }
+        public string content { get; set; }
     }
 }

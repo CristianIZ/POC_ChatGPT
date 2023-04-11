@@ -31,7 +31,7 @@ namespace ChatGPT_POC
         {
             var question = GPTQuestions.CompanyDescription(cmbCompanyName.Text, cmbCompanyLocation.Text);
 
-            txtResponse.Text = requestHelper.RequestChatGPT(question).Result;
+            txtResponse.Text = requestHelper.IARequest(question, IAModelEnum.ChatGPT).Result;
         }
     }
 }

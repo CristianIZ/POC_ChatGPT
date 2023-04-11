@@ -29,9 +29,9 @@ namespace ChatGPT_POC
             try
             {
                 if (chkHighlight.Checked)
-                    txtResponse.Text = await requestHelper.RequestChatGPT(GPTQuestions.ReStructureAndBold(txtText.Text, cmbNewPosition.Text));
+                    txtResponse.Text = await requestHelper.IARequest(GPTQuestions.ReStructureAndBold(txtText.Text, cmbNewPosition.Text), IAModelEnum.ChatGPT);
                 else
-                    txtResponse.Text = await requestHelper.RequestChatGPT(GPTQuestions.ReStructure(txtText.Text, cmbNewPosition.Text));
+                    txtResponse.Text = await requestHelper.IARequest(GPTQuestions.ReStructure(txtText.Text, cmbNewPosition.Text), IAModelEnum.ChatGPT);
             }
             catch (Exception ex)
             {

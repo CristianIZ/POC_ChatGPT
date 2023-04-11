@@ -11,7 +11,7 @@ namespace ChatGPT_POC
         {
             try
             {
-                txtResponse.Text = requestHelper.RequestChatGPT(txtQuestion.Text).Result;
+                txtResponse.Text = requestHelper.IARequest(txtQuestion.Text, IAModelEnum.ChatGPT).Result;
             }
             catch (Exception ex)
             {
